@@ -1,11 +1,11 @@
 
 
-function createStore() {
+function createStore(reducer) {
     // State is now accessable to the function dispatch
     let state;
 
     function dispatch(action){
-        state = changeCount(state, action);
+        state = reducer(state, action);
         render();
     };
 
@@ -35,7 +35,8 @@ function render() {
 };
 
 
-let store = createStore();
+let store = createStore(changeCount);
+//createStore takes the changeCount reducer as an arg
 store.dispatch({ type: '@@INIT' });
 
 
